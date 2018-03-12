@@ -1,11 +1,21 @@
 {
   "name": "containerpacking",
   "version": "1.0.0",
-  "description": "Container packing program",
-  "main": "index.js",
+  "description": "3D bin packing program",
+  "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "Olga Vorozheykina",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "eslint": "^4.9.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-babel": "^4.1.2",
+    "eslint-plugin-import": "^2.9.0"
+  },
+  "prettier": {
+    "editor.formatOnSave": true
+  }
 }

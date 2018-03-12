@@ -11,18 +11,21 @@
     <div id="input">
         <h2>Enter number of boxes</h2>
         <label for="small">Small boxes:</label>
-        <input type="text" id="small" value="0"/>
+        <input type="text" id="small" value="1"/>
         <label for="medium">Medium boxes:</label>
-        <input type="text" id="medium" value="0" />
+        <input type="text" id="medium" value="1" />
         <label for="large">Large boxes:</label>
-        <input type="text" id="large" value="0" />
+        <input type="text" id="large" value="1" />
         <h2>Enter dimensions</h2>
         <label for="contSize">Box size:</label>
-        <input type="text" id="contSize" />
-        <button onclick="main()">Calculate</button>
+        <input type="text" id="contSize" value="30"/>
+        <button onclick="volumeFit()">Calculate using volume fit</button>
+        <button onclick="pivotFit()">Calculate using pivot packing</button>
     </div>
     <div id="output"></div>
-    
+
 <script type="text/javascript" src="index.js"></script>
+<!-- <script type="text/javascript" src="volumeFit.js"></script>
+<script type="text/javascript" src="pivotFit.js"></script> -->
 </body>
 </html>
