@@ -24,7 +24,7 @@ function Container(w, h, d) {
   this.d = d;
   this.v = w * h * d;
   this.items = [];
-  this.rotation = rotation.HWD;
+  this.rotation = rotation.DWH;
 }
 
 const smallBag = new Container(16, 23, 2);
@@ -106,6 +106,11 @@ function getDimensions(bag) {
   }
 }
 
+// O------X-------+
+// |              |
+// Y      *       |
+// |              |
+// +--------------+
 // Overlap check for two rectangles
 function overlap(i1, i2, x, y) {
   const d1 = getDimensions(i1);
@@ -122,6 +127,21 @@ function overlap(i1, i2, x, y) {
   return ix < (d1[x] + d2[x]) / 2 && iy < (d1[y] + d2[y]) / 2;
 }
 
+//     +-----------------+
+//    /|                /|
+//   / |               / |
+//  /  |              /  |
+// +-----------------+   |
+// |   |             |   |
+// |   |             |   |
+// |   H             |   |
+// |   |             |   |
+// |   |             |   |
+// |   O----W--------|---+
+// |  /              |  /
+// | D               | /
+// |/                |/
+// +-----------------+
 // Perform an overlap check for each dimension
 function intersect(i1, i2) {
   return (
@@ -199,7 +219,7 @@ function fitByVolume() {
 
 // Pivot fit - Best Fit Decreasing
 // Choose a pivot point
-const startingPivot = { w: 0, h: 0, d: 0 };
+const startingPivot = { h: 0, w: 0, d: 0 };
 
 function fitByPivot(bagsToPack) {
   const unpacked = []; // clear array for rejected bag collection
@@ -214,12 +234,13 @@ function fitByPivot(bagsToPack) {
 
     // Find available pivot in current container
     lookup: for (let j = 0; j < containers.length; j += 1) {
+      let pv = {};
+
       for (let k = 0; k < axes.length; k += 1) {
         for (let l = 0; l < containers[j].items.length; l += 1) {
           const containerItem = containers[j].items[l];
 
-          // Find a pivot in current container
-          let pv = {};
+          // Try to find availble pivot point for each item
           switch (axis[axes[k]]) {
             case axis.h:
               pv = {
