@@ -50,22 +50,29 @@ function assign() {
   containers.length = 0;
   bagsNotPacked.length = 0;
 
+  const regex = (/^[0-9]*$/);
+
   smallBags = document.getElementById('small').value;
   mediumBags = document.getElementById('medium').value;
   largeBags = document.getElementById('large').value;
 
-  // bags will serve as storage and for garbage collection
-  while (smallBags > 0) {
-    bagsNotPacked.push(smallBag);
-    smallBags -= 1;
-  }
-  while (mediumBags > 0) {
-    bagsNotPacked.push(mediumBag);
-    mediumBags -= 1;
-  }
-  while (largeBags > 0) {
-    bagsNotPacked.push(largeBag);
-    largeBags -= 1;
+  if (!smallBags.match(regex) || !mediumBags.match(regex) || !largeBags.match(regex)) {
+    alert('Must input numbers!');
+    return;
+  } else {
+    // bagsNotPacked will serve as storage and for garbage collection
+    while (smallBags > 0) {
+      bagsNotPacked.push(smallBag);
+      smallBags -= 1;
+    }
+    while (mediumBags > 0) {
+      bagsNotPacked.push(mediumBag);
+      mediumBags -= 1;
+    }
+    while (largeBags > 0) {
+      bagsNotPacked.push(largeBag);
+      largeBags -= 1;
+    }
   }
 
   totalBagsVolume = bagsNotPacked.reduce((sum, current) => {
